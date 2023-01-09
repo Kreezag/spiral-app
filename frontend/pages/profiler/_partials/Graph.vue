@@ -1,20 +1,38 @@
 <template>
-  <div class="graphviz--wrapper" :class="{fullscreen: isFullscreen}">
-    <div class="graphviz" ref="graphviz"></div>
+  <div
+    class="graphviz--wrapper"
+    :class="{fullscreen: isFullscreen}"
+  >
+    <div
+      ref="graphviz"
+      class="graphviz"
+    />
     <div class="graphviz--toolbar">
-      <button @click="isFullscreen = !isFullscreen" title="Full screen">
-        <FullscreenIcon class="w-4 h-4 fill-blue-500"/>
+      <button
+        title="Full screen"
+        @click="isFullscreen = !isFullscreen"
+      >
+        <FullscreenIcon class="w-4 h-4 fill-blue-500" />
       </button>
-      <button class="text-xs uppercase text-gray-600" @click="metric = 'cpu'"
-              :class="{'font-bold': metric == 'cpu'}">
+      <button
+        class="text-xs uppercase text-gray-600"
+        :class="{'font-bold': metric == 'cpu'}"
+        @click="metric = 'cpu'"
+      >
         CPU
       </button>
-      <button class="text-xs uppercase text-gray-600" @click="metric = 'pmu'"
-              :class="{'font-bold': metric == 'pmu'}">
+      <button
+        class="text-xs uppercase text-gray-600"
+        :class="{'font-bold': metric == 'pmu'}"
+        @click="metric = 'pmu'"
+      >
         Memory change
       </button>
-      <button class="text-xs uppercase text-gray-600" @click="metric = 'mu'"
-              :class="{'font-bold': metric == 'mu'}">
+      <button
+        class="text-xs uppercase text-gray-600"
+        :class="{'font-bold': metric == 'mu'}"
+        @click="metric = 'mu'"
+      >
         Memory usage
       </button>
     </div>
@@ -53,6 +71,12 @@ export default {
     metric() {
       this.renderGraph()
     }
+  },
+  mounted() {
+    this.renderGraph()
+  },
+  beforeUnmount() {
+    this.graph.destroy()
   },
   methods: {
     buildDigraph() {
@@ -97,12 +121,6 @@ export default {
         .fit(true)
         .renderDot(this.buildDigraph(), this.nodeHandler)
     }
-  },
-  mounted() {
-    this.renderGraph()
-  },
-  beforeDestroy() {
-    this.graph.destroy()
   }
 }
 </script>

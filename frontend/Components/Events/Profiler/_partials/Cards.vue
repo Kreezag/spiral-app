@@ -1,40 +1,50 @@
 <template>
   <section class="event--profiler__cards">
     <div class="item">
-      <h4 class="item--name">Calls</h4>
+      <h4 class="item--name">
+        Calls
+      </h4>
       <strong class="item--value">
         {{ cost.ct || 0 }}
       </strong>
     </div>
     <div class="item">
-      <h4 class="item--name">CPU time</h4>
+      <h4 class="item--name">
+        CPU time
+      </h4>
       <strong class="item--value">
         {{ cpu }}
         <div v-if="cost.p_cpu">{{ cost.p_cpu }}%</div>
-<!--        <div v-if="cost.d_cpu">{{ d_cpu }}</div>-->
+        <!--        <div v-if="cost.d_cpu">{{ d_cpu }}</div>-->
       </strong>
     </div>
     <div class="item">
-      <h4 class="item--name">Wall time</h4>
+      <h4 class="item--name">
+        Wall time
+      </h4>
       <strong class="item--value">
         {{ wt }}
         <div v-if="cost.p_wt">{{ cost.p_wt }}%</div>
       </strong>
     </div>
     <div class="item">
-      <h4 class="item--name">Memory usage</h4>
+      <h4 class="item--name">
+        Memory usage
+      </h4>
       <strong class="item--value">
         {{ mu }}
         <div v-if="cost.p_mu">{{ cost.p_mu }}%</div>
-<!--        <div v-if="cost.d_mu">{{ d_mu }}</div>-->
+        <!--        <div v-if="cost.d_mu">{{ d_mu }}</div>-->
       </strong>
     </div>
     <div class="item">
-      <h4 class="item--name">Change memory</h4>
+      <h4 class="item--name">
+        Change memory
+      </h4>
       <strong class="item--value">
         {{ pmu }}
         <div v-if="cost.p_pmu">{{ cost.p_pmu }}%</div>
-<!--        <div v-if="cost.d_pmu">{{ d_pmu }}</div>-->
+        <!--        <div v-if="cost.d_pmu">{{ d_pmu }}</div>-->
       </strong>
     </div>
   </section>

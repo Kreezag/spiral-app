@@ -1,20 +1,15 @@
 <template>
-  <div class="call-information__wrapper" :style="position">
+  <div
+    class="call-information__wrapper"
+    :style="position"
+  >
     <h4>{{ edge.name }}</h4>
-    <Cards v-if="edge.cost" :cost="edge.cost"/>
+    <Cards
+      v-if="edge.cost"
+      :cost="edge.cost"
+    />
   </div>
 </template>
-
-<style lang="scss">
-.call-information__wrapper {
-  @apply bg-gray-800 absolute border border-gray-300 dark:border-gray-600;
-  z-index: 9999;
-
-  > h4 {
-    @apply px-4 pt-4 pb-0 font-bold truncate;
-  }
-}
-</style>
 
 <script>
 import Cards from "@/Components/Events/Profiler/_partials/Cards"
@@ -52,3 +47,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.call-information__wrapper {
+  @apply bg-gray-800 absolute border border-gray-300 dark:border-gray-600;
+  z-index: 9999;
+
+  > h4 {
+    @apply px-4 pt-4 pb-0 font-bold truncate;
+  }
+}
+</style>

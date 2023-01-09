@@ -1,7 +1,10 @@
 <template>
-    <span class="label" :class="color">
-        <slot></slot>
-    </span>
+  <span
+    class="label"
+    :class="color"
+  >
+    <slot />
+  </span>
 </template>
 
 <script>

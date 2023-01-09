@@ -1,6 +1,12 @@
 <template>
-  <Event :event="event" class="event--sentry">
-    <Exception :event="event" class="event-sentry__exception"/>
+  <Event
+    :event="event"
+    class="event--sentry"
+  >
+    <Exception
+      :event="event"
+      class="event-sentry__exception"
+    />
   </Event>
 </template>
 

@@ -2,29 +2,41 @@
   <div class="events-page">
     <header class="events-page__header">
       <div>
-        <Fiilters/>
+        <Fiilters />
       </div>
 
-      <div class="events-page__filters" v-if="hasEvents">
-        <button @click="clearEvents" class="events__btn-clear">
+      <div
+        v-if="hasEvents"
+        class="events-page__filters"
+      >
+        <button
+          class="events__btn-clear"
+          @click="clearEvents"
+        >
           Clear screen
         </button>
       </div>
     </header>
 
-    <main v-if="hasEvents" class="events-page__events">
+    <main
+      v-if="hasEvents"
+      class="events-page__events"
+    >
       <component
         :is="eventComponent(event)"
-        :event="event"
         v-for="event in events"
         :key="event.uuid"
+        :event="event"
         class="events-page__event"
       />
     </main>
 
-    <section v-else class="events-page__welcome-block">
-      <WsConnectionStatus/>
-      <Tips class="events-page__tips"/>
+    <section
+      v-else
+      class="events-page__welcome-block"
+    >
+      <WsConnectionStatus />
+      <Tips class="events-page__tips" />
     </section>
   </div>
 </template>
@@ -63,9 +75,6 @@ export default {
 
     return {title}
   },
-  mounted() {
-    this.$store.dispatch('events/fetch')
-  },
   computed: {
     hasEvents() {
       return this.events.length > 0
@@ -73,6 +82,9 @@ export default {
     events() {
       return this.$store.getters['events/filtered']
     },
+  },
+  mounted() {
+    this.$store.dispatch('events/fetch')
   },
   methods: {
     clearEvents() {

@@ -1,14 +1,23 @@
 <template>
-  <NuxtLink :to="event.route.show"
-            class="event-smtp__link"
-            :class="{'active': isActive }"
+  <NuxtLink
+    :to="event.route.show"
+    class="event-smtp__link"
+    :class="{'active': isActive }"
   >
-    <div class="event-sentry__left" :class="{'active': isActive }"></div>
+    <div
+      class="event-sentry__left"
+      :class="{'active': isActive }"
+    />
     <div class="event-smtp__link-body">
-      <h3 class="event-smtp__link-title" :class="{ 'font-bold': isActive }">{{ event.event.subject }}</h3>
+      <h3
+        class="event-smtp__link-title"
+        :class="{ 'font-bold': isActive }"
+      >
+        {{ event.event.subject }}
+      </h3>
       <div class="event-smtp__link-text">
         <span>
-            <strong>To:</strong> {{ event.event.to[0].email }}
+          <strong>To:</strong> {{ event.event.to[0].email }}
         </span>
         <span>{{ date }}</span>
       </div>

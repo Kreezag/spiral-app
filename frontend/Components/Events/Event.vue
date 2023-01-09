@@ -1,37 +1,74 @@
 <template>
-  <div class="event" ref="event" :id="event.id" :class="{'collapsed': event.collapsed, 'open': !event.collapsed}">
+  <div
+    :id="event.id"
+    ref="event"
+    class="event"
+    :class="{'collapsed': event.collapsed, 'open': !event.collapsed}"
+  >
     <div class="event__sidebar sidebar">
       <div class="event__labels">
-        <JsonChip :href="event.route.json"/>
+        <JsonChip :href="event.route.json" />
         <Label :color="event.color">
           {{ date }}
         </Label>
-<!--        <Label :color="event.color">-->
-<!--          {{ event.app }}-->
-<!--        </Label>-->
-        <Label v-if="hasLabels" v-for="label in labels" :key="label" :color="event.color">
+        <!--        <Label :color="event.color">-->
+        <!--          {{ event.app }}-->
+        <!--        </Label>-->
+        <Label
+          v-for="label in labels"
+          v-if="hasLabels"
+          :key="label"
+          :color="event.color"
+        >
           {{ label }}
         </Label>
       </div>
-      <div class="sidebar__container" v-if="!isScreenshot">
-        <ImageExport v-if="exportableEl" :name="`${event.app}-${event.id}`" :el="exportableEl"/>
-        <button @click="toggle" class="button button__collapse" :class="color">
-          <PlusIcon v-if="event.collapsed"/>
-          <MinusIcon v-else/>
+      <div
+        v-if="!isScreenshot"
+        class="sidebar__container"
+      >
+        <ImageExport
+          v-if="exportableEl"
+          :name="`${event.app}-${event.id}`"
+          :el="exportableEl"
+        />
+        <button
+          class="button button__collapse"
+          :class="color"
+          @click="toggle"
+        >
+          <PlusIcon v-if="event.collapsed" />
+          <MinusIcon v-else />
         </button>
-        <button class="button button__delete" @click="deleteEvent">
-          <TimesIcon/>
+        <button
+          class="button button__delete"
+          @click="deleteEvent"
+        >
+          <TimesIcon />
         </button>
       </div>
     </div>
-    <div class="event__body" ref="event_body">
-      <slot></slot>
+    <div
+      ref="event_body"
+      class="event__body"
+    >
+      <slot />
     </div>
-    <div class="event__origin" v-if="hasOrigin || hasServerName">
+    <div
+      v-if="hasOrigin || hasServerName"
+      class="event__origin"
+    >
       <div class="event__origin-tags">
-        <span v-if="hasOrigin && value" v-for="(value, tag) in event.origin"><strong>{{ tag }}: </strong>{{ value }}</span>
+        <span
+          v-for="(value, tag) in event.origin"
+          v-if="hasOrigin && value"
+        ><strong>{{ tag }}: </strong>{{ value }}</span>
       </div>
-      <Host v-if="hasServerName" :name="event.serverName" class="event__origin-host"/>
+      <Host
+        v-if="hasServerName"
+        :name="event.serverName"
+        class="event__origin-host"
+      />
     </div>
   </div>
 </template>
@@ -56,17 +93,6 @@ export default {
     return {
       open: true,
       exportableEl: null
-    }
-  },
-  mounted() {
-    this.exportableEl = this.$refs.event
-  },
-  methods: {
-    toggle() {
-      this.$store.commit('events/toggleCollapsedState', this.event)
-    },
-    deleteEvent() {
-      this.$store.dispatch('events/delete', this.event)
     }
   },
   computed: {
@@ -97,6 +123,17 @@ export default {
     },
     hasServerName() {
       return this.event.serverName !== null
+    }
+  },
+  mounted() {
+    this.exportableEl = this.$refs.event
+  },
+  methods: {
+    toggle() {
+      this.$store.commit('events/toggleCollapsedState', this.event)
+    },
+    deleteEvent() {
+      this.$store.dispatch('events/delete', this.event)
     }
   }
 }

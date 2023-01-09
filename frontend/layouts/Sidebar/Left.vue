@@ -14,8 +14,8 @@
     </nav>
 
     <div class="left-sidebar__info">
-      <WsConnectionIcon class="left-sidebar__info-item"/>
-<!--      <Logout/>-->
+      <WsConnectionIcon class="left-sidebar__info-item" />
+      <!--      <Logout/>-->
     </div>
   </section>
 </template>

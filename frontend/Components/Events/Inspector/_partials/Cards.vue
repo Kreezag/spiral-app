@@ -1,16 +1,25 @@
 <template>
   <section class="inspector-cards">
     <div class="item">
-      <h4 class="item--name">Timestamp</h4>
+      <h4 class="item--name">
+        Timestamp
+      </h4>
       <strong class="item--value">{{ event.processDate }}</strong>
     </div>
     <div class="item">
-      <h4 class="item--name">Duration</h4>
+      <h4 class="item--name">
+        Duration
+      </h4>
       <strong class="item--value">{{ event.process.duration }} ms</strong>
     </div>
     <div class="item">
-      <h4 class="item--name">Result</h4>
-      <span :class="`bg-${event.color}-700`" class="item--label">{{ event.processResult }}</span>
+      <h4 class="item--name">
+        Result
+      </h4>
+      <span
+        :class="`bg-${event.color}-700`"
+        class="item--label"
+      >{{ event.processResult }}</span>
     </div>
   </section>
 </template>

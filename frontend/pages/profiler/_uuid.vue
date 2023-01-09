@@ -1,50 +1,60 @@
 <template>
   <div class="page-profiler">
     <main ref="main">
-      <section class="call-stack__wrapper" ref="calls">
+      <section
+        ref="calls"
+        class="call-stack__wrapper"
+      >
         <PerfectScrollbar :style="{height: callStackHeight}">
-          <CallsList :event="event" @hover="showEdge" @hide="hideEdge"/>
+          <CallsList
+            :event="event"
+            @hover="showEdge"
+            @hide="hideEdge"
+          />
         </PerfectScrollbar>
       </section>
-      <div class="info__wrapper" ref="info">
+      <div
+        ref="info"
+        class="info__wrapper"
+      >
         <section class="p-5 bg-gray-200 bg-gray-800">
-          <Cards :cost="event.peaks"/>
+          <Cards :cost="event.peaks" />
         </section>
 
         <section class="p-5 bg-gray-200 flex-1 flex flex-col bg-gray-800">
           <Tabs class="flex-1">
-            <Tab title="Call graph" class="flex-1">
-              <Graph :event="event" @hover="showEdge" @hide="hideEdge"/>
+            <Tab
+              title="Call graph"
+              class="flex-1"
+            >
+              <Graph
+                :event="event"
+                @hover="showEdge"
+                @hide="hideEdge"
+              />
             </Tab>
-            <Tab title="Flamechart" class="flex-1">
-              <FlameGraph :event="event" :width="width" @hover="showEdge" @hide="hideEdge"/>
+            <Tab
+              title="Flamechart"
+              class="flex-1"
+            >
+              <FlameGraph
+                :event="event"
+                :width="width"
+                @hover="showEdge"
+                @hide="hideEdge"
+              />
             </Tab>
           </Tabs>
         </section>
       </div>
     </main>
 
-    <CallInfo v-if="edge" :edge="edge"/>
+    <CallInfo
+      v-if="edge"
+      :edge="edge"
+    />
   </div>
 </template>
-
-<style lang="scss">
-.page-profiler {
-  @apply relative;
-
-  > main {
-    @apply flex flex-col md:flex-row;
-  }
-
-  .call-stack__wrapper {
-    @apply w-full md:w-1/6 border-r border-gray-300 dark:border-gray-500;
-  }
-
-  .info__wrapper {
-    @apply w-full h-full flex flex-col md:w-5/6 divide-y divide-gray-300 dark:divide-gray-500;
-  }
-}
-</style>
 
 <script>
 import {PerfectScrollbar} from 'vue2-perfect-scrollbar'
@@ -69,18 +79,6 @@ export default {
     PerfectScrollbar,
     Tab, Tabs
   },
-  head() {
-    return {
-      title: `Profiler > ${this.event.uuid} | Buggregator`
-    }
-  },
-  data() {
-    return {
-      callStackHeight: 0,
-      width: 0,
-      edge: null
-    }
-  },
   async asyncData({params, redirect, $api}) {
     const json = await $api.events.show(params.uuid)
     const event = new ProfilerEvent(json.payload, json.uuid, json.timestamp)
@@ -89,6 +87,23 @@ export default {
     }
 
     return {event}
+  },
+  data() {
+    return {
+      callStackHeight: 0,
+      width: 0,
+      edge: null
+    }
+  },
+  head() {
+    return {
+      title: `Profiler > ${this.event.uuid} | Buggregator`
+    }
+  },
+  computed: {
+    date() {
+      return this.event.date.fromNow()
+    }
   },
   mounted() {
     this.calculateCallStackHeight()
@@ -114,11 +129,24 @@ export default {
     calculateCallStackHeight() {
       this.callStackHeight = Math.max(window.innerHeight - 2) + 'px'
     }
-  },
-  computed: {
-    date() {
-      return this.event.date.fromNow()
-    }
   }
 }
 </script>
+
+<style lang="scss">
+.page-profiler {
+  @apply relative;
+
+  > main {
+    @apply flex flex-col md:flex-row;
+  }
+
+  .call-stack__wrapper {
+    @apply w-full md:w-1/6 border-r border-gray-300 dark:border-gray-500;
+  }
+
+  .info__wrapper {
+    @apply w-full h-full flex flex-col md:w-5/6 divide-y divide-gray-300 dark:divide-gray-500;
+  }
+}
+</style>

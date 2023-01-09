@@ -1,7 +1,7 @@
 <template>
-    <div class="event-table">
-        <slot></slot>
-    </div>
+  <div class="event-table">
+    <slot />
+  </div>
 </template>
 
 <script>

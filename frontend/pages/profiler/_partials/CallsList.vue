@@ -1,16 +1,21 @@
 <template>
   <div class="event--profiler__callitems">
     <header>
-<!--      <div class="callee">Function calls</div>-->
-      <div class="cpu">CPU / Memory</div>
-      <div class="calls">Calls</div>
+      <!--      <div class="callee">Function calls</div>-->
+      <div class="cpu">
+        CPU / Memory
+      </div>
+      <div class="calls">
+        Calls
+      </div>
     </header>
 
-    <CallsItem v-for="(edge, key) in sortedEdges"
-               :key="key"
-               :edge="edge"
-               @hover="$emit('hover', $event)"
-               @hide="$emit('hide')"
+    <CallsItem
+      v-for="(edge, key) in sortedEdges"
+      :key="key"
+      :edge="edge"
+      @hover="$emit('hover', $event)"
+      @hide="$emit('hide')"
     />
   </div>
 </template>

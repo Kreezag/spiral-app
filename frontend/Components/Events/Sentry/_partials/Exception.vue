@@ -1,16 +1,28 @@
 <template>
   <div class="sentry-exception">
-    <NuxtLink tag="div" :to="event.route.show" class="sentry-exception__link flex-grow">
+    <NuxtLink
+      tag="div"
+      :to="event.route.show"
+      class="sentry-exception__link flex-grow"
+    >
       <h3 class="sentry-exception__title">
         {{ event.payload.type }}
       </h3>
-      <pre class="sentry-exception__text" v-html="event.payload.value"/>
+      <pre
+        class="sentry-exception__text"
+        v-html="event.payload.value"
+      />
     </NuxtLink>
-    <div class="sentry-exception__files w-full" v-if="hasFrames">
-      <File :key="`${file.filename}-${file.lineno}-${i}`"
-            :file="file"
-            v-for="(file, i) in stacktrace"
-            :collapsed="i !== 0" class="sentry-exception__file"
+    <div
+      v-if="hasFrames"
+      class="sentry-exception__files w-full"
+    >
+      <File
+        v-for="(file, i) in stacktrace"
+        :key="`${file.filename}-${file.lineno}-${i}`"
+        :file="file"
+        :collapsed="i !== 0"
+        class="sentry-exception__file"
       />
     </div>
   </div>

@@ -2,28 +2,44 @@
   <div class="tips">
     <ul class="tips__list">
       <li class="tips__item">
-        <GithubIcon class="tips__icon github"/>
-        <a href="https://github.com/buggregator/app" target="_blank" class="tips__link">Github repository</a>
+        <GithubIcon class="tips__icon github" />
+        <a
+          href="https://github.com/buggregator/app"
+          target="_blank"
+          class="tips__link"
+        >Github repository</a>
       </li>
       <li class="tips__item">
-        <SentryIcon class="tips__icon sentry"/>
-        <span>Sentry DSN <a href="https://docs.sentry.io/product/sentry-basics/dsn-explainer/" target="_blank"
-                            class="tips__link">{{ sentryDsn }}</a></span>
+        <SentryIcon class="tips__icon sentry" />
+        <span>Sentry DSN <a
+          href="https://docs.sentry.io/product/sentry-basics/dsn-explainer/"
+          target="_blank"
+          class="tips__link"
+        >{{ sentryDsn }}</a></span>
       </li>
       <li class="tips__item">
-        <InspectorIcon class="tips__icon inspector"/>
-        <span>Inspector URL <a href="https://docs.inspector.dev/raw-php" target="_blank"
-                               class="tips__link">{{ inspectorUrl }}</a></span>
+        <InspectorIcon class="tips__icon inspector" />
+        <span>Inspector URL <a
+          href="https://docs.inspector.dev/raw-php"
+          target="_blank"
+          class="tips__link"
+        >{{ inspectorUrl }}</a></span>
       </li>
       <li class="tips__item">
-        <DocsIcon class="tips__icon inspector"/>
-        <span>VarDumper URL <a href="https://symfony.com/doc/current/components/var_dumper.html#the-dump-server"
-                               target="_blank" class="tips__link">{{ varDumperUrl }}</a></span>
+        <DocsIcon class="tips__icon inspector" />
+        <span>VarDumper URL <a
+          href="https://symfony.com/doc/current/components/var_dumper.html#the-dump-server"
+          target="_blank"
+          class="tips__link"
+        >{{ varDumperUrl }}</a></span>
       </li>
       <li class="tips__item">
-        <DocsIcon class="tips__icon inspector"/>
-        <span>Monolog URL <a href="https://github.com/Seldaek/monolog/blob/main/doc/sockets.md" target="_blank"
-                             class="tips__link">{{ monologUrl }}</a></span>
+        <DocsIcon class="tips__icon inspector" />
+        <span>Monolog URL <a
+          href="https://github.com/Seldaek/monolog/blob/main/doc/sockets.md"
+          target="_blank"
+          class="tips__link"
+        >{{ monologUrl }}</a></span>
       </li>
     </ul>
   </div>

@@ -51,7 +51,7 @@ export default function (doc) {
             }
         }
         return true;
-    };
+    }
 
     function collapse(a, recursive) {
         var s = a.nextSibling || {}, oldClass = s.className;
@@ -60,7 +60,7 @@ export default function (doc) {
             return true;
         }
         return false;
-    };
+    }
 
     function expand(a, recursive) {
         var s = a.nextSibling || {}, oldClass = s.className;
@@ -69,7 +69,7 @@ export default function (doc) {
             return true;
         }
         return false;
-    };
+    }
 
     function collapseAll(root) {
         var a = root.querySelector('a.sf-dump-toggle');
@@ -140,7 +140,7 @@ export default function (doc) {
                     }
                 }
             });
-        };
+        }
 
         function isCtrlKey(e) {
             return e.ctrlKey || e.metaKey;

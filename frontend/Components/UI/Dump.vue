@@ -1,13 +1,16 @@
 <template>
-  <CodeSnippet v-if="isBool" language="php" :code="value == 1"/>
-  <div v-else v-html="cleanHtml" class="dump" :class="{'active': dumpId}"></div>
+  <CodeSnippet
+    v-if="isBool"
+    language="php"
+    :code="value == 1"
+  />
+  <div
+    v-else
+    class="dump"
+    :class="{'active': dumpId}"
+    v-html="cleanHtml"
+  />
 </template>
-
-<style lang="scss">
-.dump {
-  @apply border-gray-300 dark:border-gray-500 divide-gray-300 dark:divide-gray-500 font-mono p-2 md:px-3 lg:px-4 border bg-gray-200 dark:bg-gray-800 text-blue-700 dark:text-white text-sm break-all text-2xs sm:text-xs md:text-sm lg:text-base;
-}
-</style>
 
 <script>
 import CodeSnippet from "@/Components/UI/CodeSnippet"
@@ -18,11 +21,6 @@ export default {
   data() {
     return {
       evaluated: false,
-    }
-  },
-  mounted() {
-    if (this.dumpId) {
-      window.Sfdump(this.dumpId)
     }
   },
   computed: {
@@ -52,9 +50,20 @@ export default {
 
       return this.value
     }
+  },
+  mounted() {
+    if (this.dumpId) {
+      window.Sfdump(this.dumpId)
+    }
   }
 }
 </script>
+
+<style lang="scss">
+.dump {
+  @apply border-gray-300 dark:border-gray-500 divide-gray-300 dark:divide-gray-500 font-mono p-2 md:px-3 lg:px-4 border bg-gray-200 dark:bg-gray-800 text-blue-700 dark:text-white text-sm break-all text-2xs sm:text-xs md:text-sm lg:text-base;
+}
+</style>
 
 <style>
 pre.sf-dump {

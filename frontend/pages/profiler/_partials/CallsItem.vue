@@ -1,12 +1,26 @@
 <template>
-  <div class="event--profiler__callitem" @mouseover="onHover($event, edge)" @mouseout="$emit('hide')">
-<!--    <div class="callee">{{ edge.callee }}</div>-->
+  <div
+    class="event--profiler__callitem"
+    @mouseover="onHover($event, edge)"
+    @mouseout="$emit('hide')"
+  >
+    <!--    <div class="callee">{{ edge.callee }}</div>-->
     <div class="usage">
-      <div class="usage--cpu" :style="{width: `${p_cpu}%`}"/>
-      <div class="usage--memory" :style="{width: `${p_mu}%`}"/>
-      <div class="usage--title">{{ edge.cost.p_cpu }}% / {{ edge.cost.p_mu }}%</div>
+      <div
+        class="usage--cpu"
+        :style="{width: `${p_cpu}%`}"
+      />
+      <div
+        class="usage--memory"
+        :style="{width: `${p_mu}%`}"
+      />
+      <div class="usage--title">
+        {{ edge.cost.p_cpu }}% / {{ edge.cost.p_mu }}%
+      </div>
     </div>
-    <div class="calls">{{ edge.cost.ct }}</div>
+    <div class="calls">
+      {{ edge.cost.ct }}
+    </div>
   </div>
 </template>
 
@@ -16,18 +30,6 @@ import {humanFileSize, formatDuration} from "@/Utils/converters"
 export default {
   props: {
     edge: Object,
-  },
-  methods: {
-    onHover($event, edge) {
-      this.$emit('hover', {
-        name: edge.callee,
-        cost: edge.cost,
-        position: {
-          x: $event.pageX,
-          y: $event.pageY,
-        }
-      });
-    }
   },
   computed: {
     p_cpu() {
@@ -41,6 +43,18 @@ export default {
     },
     mu() {
       return humanFileSize(this.edge.cost.mu)
+    }
+  },
+  methods: {
+    onHover($event, edge) {
+      this.$emit('hover', {
+        name: edge.callee,
+        cost: edge.cost,
+        position: {
+          x: $event.pageX,
+          y: $event.pageY,
+        }
+      });
     }
   }
 }

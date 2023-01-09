@@ -2,12 +2,12 @@
   <div class="main-layout">
     <div class="main-layout__sidebar-wrap">
       <LeftSidebar class="main-layout__sidebar">
-        <slot name="left-sidebar"></slot>
+        <slot name="left-sidebar" />
       </LeftSidebar>
     </div>
 
     <div class="main-layout__content">
-      <Nuxt/>
+      <Nuxt />
     </div>
   </div>
 </template>

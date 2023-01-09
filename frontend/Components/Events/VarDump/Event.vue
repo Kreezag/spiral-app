@@ -1,5 +1,8 @@
 <template>
-  <Event :event="event" class="event-vardump">
+  <Event
+    :event="event"
+    class="event-vardump"
+  >
     <Dump
       :type="event.payloads.type"
       :value="event.payloads.value"

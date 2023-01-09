@@ -1,6 +1,12 @@
 <template>
-  <div class="event--profiler__flamegraph" @mousemove="trackMousePosition">
-    <div class="flamegraph" ref="flamegraph"></div>
+  <div
+    class="event--profiler__flamegraph"
+    @mousemove="trackMousePosition"
+  >
+    <div
+      ref="flamegraph"
+      class="flamegraph"
+    />
   </div>
 </template>
 
@@ -30,6 +36,27 @@ export default {
     width(width) {
       this.chart.width(width).update()
     }
+  },
+  mounted() {
+    const el = this.$refs.flamegraph
+    const builder = new FlamegraphBuilder(this.event.edges)
+
+    this.chart = flamegraph()
+      .onHover(this.onSpanHover)
+      .setDetailsHandler(this.detailsHandler)
+      .sort(false)
+      .inverted(true)
+      .computeDelta(true)
+      .setColorMapper(this.colorMapper)
+      .cellHeight(this.cellHeight)
+      .width(this.width)
+
+    select(el)
+      .datum(builder.build())
+      .call(this.chart)
+  },
+  unmounted() {
+    this.chart.destroy()
   },
   methods: {
     trackMousePosition(e) {
@@ -63,27 +90,6 @@ export default {
 
       return '#1f2937';
     }
-  },
-  mounted() {
-    const el = this.$refs.flamegraph
-    const builder = new FlamegraphBuilder(this.event.edges)
-
-    this.chart = flamegraph()
-      .onHover(this.onSpanHover)
-      .setDetailsHandler(this.detailsHandler)
-      .sort(false)
-      .inverted(true)
-      .computeDelta(true)
-      .setColorMapper(this.colorMapper)
-      .cellHeight(this.cellHeight)
-      .width(this.width)
-
-    select(el)
-      .datum(builder.build())
-      .call(this.chart)
-  },
-  destroyed() {
-    this.chart.destroy()
   }
 }
 </script>

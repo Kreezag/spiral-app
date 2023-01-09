@@ -1,7 +1,13 @@
 <template>
-    <Event :event="event" class="event--smtp">
-        <NavItem :event="event" class="event-smtp__nav-item"/>
-    </Event>
+  <Event
+    :event="event"
+    class="event--smtp"
+  >
+    <NavItem
+      :event="event"
+      class="event-smtp__nav-item"
+    />
+  </Event>
 </template>
 
 <script>

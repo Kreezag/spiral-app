@@ -1,9 +1,20 @@
 <template>
-  <Event :event="event" class="event--inspector">
-    <h3 class="event-0inspector__title">{{ event.process.name }} </h3>
+  <Event
+    :event="event"
+    class="event--inspector"
+  >
+    <h3 class="event-0inspector__title">
+      {{ event.process.name }}
+    </h3>
 
-    <NuxtLink :to="event.route.show" class="event-0inspector__link">
-      <Cards :event="event" class="event--inspector__cards"/>
+    <NuxtLink
+      :to="event.route.show"
+      class="event-0inspector__link"
+    >
+      <Cards
+        :event="event"
+        class="event--inspector__cards"
+      />
     </NuxtLink>
   </Event>
 </template>
