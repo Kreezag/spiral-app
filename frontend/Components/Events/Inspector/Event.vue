@@ -28,7 +28,10 @@ export default {
     Event, Cards
   },
   props: {
-    event: Object
+    event: {
+      type: Object,
+      default: null,
+    }
   },
   computed: {
     date() {

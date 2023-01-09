@@ -1,4 +1,3 @@
-import Centrifuge from 'centrifuge'
 import Channel from './Channel'
 
 export class WsClient {
@@ -48,7 +47,7 @@ export class WsClient {
   }
 
   disconnect() {
-    Object.entries(this.channels).forEach(([key, channel]) => {
+    Object.values(this.channels).forEach((channel) => {
       channel.unsubscribe()
     })
     this.centrifuge.removeAllListeners()

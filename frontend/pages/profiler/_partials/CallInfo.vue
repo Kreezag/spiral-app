@@ -1,7 +1,7 @@
 <template>
   <div
     class="call-information__wrapper"
-    :style="position"
+    :style="wrapperStyles"
   >
     <h4>{{ edge.name }}</h4>
     <Cards
@@ -17,7 +17,10 @@ import Cards from "@/Components/Events/Profiler/_partials/Cards"
 export default {
   components: {Cards},
   props: {
-    edge: Object,
+    edge: {
+      type: Object,
+      default: null
+    },
     width: {
       type: Number,
       default: 750
@@ -27,23 +30,28 @@ export default {
       default: 170
     }
   },
-  computed: {
-    position() {
+  data () {
+    const calcPosition = () => {
+      let positionX = this.edge.position.x;
+      let positionY = this.edge.position.y;
+
       if ((this.width + this.edge.position.x) > window.innerWidth - 80) {
         const deltaX = (this.width + this.edge.position.x) - window.innerWidth + 100
-        this.edge.position.x -= deltaX;
+        positionX -= deltaX;
       }
 
       if (this.height + this.edge.position.y > window.innerHeight) {
-        this.edge.position.y = this.edge.position.y - this.height;
+        positionY = this.edge.position.y - this.height;
       }
 
       return {
-        top: (this.edge.position.y + 10) + 'px',
-        left: this.edge.position.x + 'px',
+        top: (positionY + 10) + 'px',
+        left: `${positionX}px`,
         width: this.width + 'px'
       }
-    }
+    };
+
+    this.wrapperStyles = calcPosition();
   }
 }
 </script>

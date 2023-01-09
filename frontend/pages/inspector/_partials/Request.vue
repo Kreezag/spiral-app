@@ -32,7 +32,12 @@ import TableRow from "@/Components/UI/TableRow"
 
 export default {
   components: {Table, TableRow},
-  props: ['event']
+  props: {
+    event: {
+      type: Object,
+      default: null,
+    }
+  }
 }
 </script>
 

@@ -14,14 +14,15 @@
         <!--        <Label :color="event.color">-->
         <!--          {{ event.app }}-->
         <!--        </Label>-->
-        <Label
-          v-for="label in labels"
-          v-if="hasLabels"
-          :key="label"
-          :color="event.color"
-        >
-          {{ label }}
-        </Label>
+        <template v-if="hasLabels">
+          <Label
+            v-for="label in labels"
+            :key="label"
+            :color="event.color"
+          >
+            {{ label }}
+          </Label>
+        </template>
       </div>
       <div
         v-if="!isScreenshot"
@@ -60,9 +61,11 @@
     >
       <div class="event__origin-tags">
         <span
-          v-for="(value, tag) in event.origin"
-          v-if="hasOrigin && value"
-        ><strong>{{ tag }}: </strong>{{ value }}</span>
+          v-for="(value, tag) in normalizedOrigin"
+          :key="value"
+        >
+          <strong>{{ tag }}: </strong>{{ value }}
+        </span>
       </div>
       <Host
         v-if="hasServerName"
@@ -87,7 +90,10 @@ export default {
     MinusIcon, PlusIcon, TimesIcon, Label, JsonChip, ImageExport, Host
   },
   props: {
-    event: Object
+    event: {
+      type: Object,
+      default: null
+    }
   },
   data() {
     return {
@@ -123,6 +129,9 @@ export default {
     },
     hasServerName() {
       return this.event.serverName !== null
+    },
+    normalizedOrigin() {
+      return this.hasOrigin && Object.values(this.event.origin).filter(Boolean).length;
     }
   },
   mounted() {

@@ -16,7 +16,10 @@ import download from "@/Utils/download"
 export default {
   components: {CopyIcon},
   props: {
-    name: String,
+    name: {
+      type: String,
+      default: ''
+    },
     el: HTMLElement,
   },
   methods: {

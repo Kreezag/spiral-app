@@ -8,13 +8,13 @@ const wsProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws'
 const WS_URL = process.env.WS_URL || `${wsProtocol}://${host}/connection/websocket`
 
 const subscribe = (client, store) => client.connect()
-  .then(ctx => {
+  .then(() => {
     store.commit('ws/connect')
   })
-  .catch(err => {
+  .catch(() => {
     store.commit('ws/disconnect')
   })
-  .then(ctx => {
+  .then(() => {
     const channel = client.eventsChannel()
     Factory.init({channel, store})
   })

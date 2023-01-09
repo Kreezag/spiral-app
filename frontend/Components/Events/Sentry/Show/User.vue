@@ -48,7 +48,10 @@ export default {
         Table, TableRow,
     },
     props: {
-        event: Object
+        event: {
+          type: Object,
+          default: null,
+        }
     }
 }
 </script>

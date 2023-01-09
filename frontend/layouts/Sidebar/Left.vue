@@ -9,6 +9,7 @@
         :class="{'active': isActive(link)}"
         class="left-sidebar__link"
       >
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <span v-html="link.icon" />
       </NuxtLink>
     </nav>
@@ -22,10 +23,10 @@
 
 <script>
 import WsConnectionIcon from "./WsConnectionIcon";
-import Logout from "./Logout";
+// import Logout from "./Logout";
 
 export default {
-  components: {Logout, WsConnectionIcon},
+  components: { WsConnectionIcon},
   data() {
     return {
       links: [

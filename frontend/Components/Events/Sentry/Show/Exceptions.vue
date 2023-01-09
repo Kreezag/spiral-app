@@ -16,9 +16,12 @@
 import Exception from "./Exception"
 
 export default {
-    components: {Exception},
-    props: {
-        exceptions: Array
-    },
+  components: {Exception},
+  props: {
+    exceptions: {
+      type: Array,
+      default: () => []
+    }
+  },
 }
 </script>

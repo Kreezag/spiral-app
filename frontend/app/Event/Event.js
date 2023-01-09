@@ -63,11 +63,11 @@ export class Event {
     return this.type === type
   }
 
-  content(field) {
+  content() {
     return null
   }
 
-  merge(event) {
+  merge() {
 
   }
 }

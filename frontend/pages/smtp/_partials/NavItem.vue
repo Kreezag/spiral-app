@@ -28,7 +28,10 @@
 <script>
 export default {
   props: {
-    event: Object
+    event: {
+      type: Object,
+      default: null
+    }
   },
   computed: {
     url() {

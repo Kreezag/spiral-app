@@ -36,6 +36,7 @@
         </div>
         <div
           v-for="email in event.event.from"
+          :key="email.name"
           class="px-3 py-1 bg-gray-800 text-white font-semibold rounded-r"
         >
           {{ email.name }} [{{ email.email }}]
@@ -44,6 +45,7 @@
 
       <div
         v-for="email in event.event.to"
+        :key="email.name"
         class="flex border border-purple-300 rounded items-center mr-3 mb-2"
       >
         <div class="px-3 py-1 border-r">
@@ -56,6 +58,7 @@
 
       <div
         v-for="email in event.event.cc"
+        :key="email.name"
         class="flex border border-purple-300 rounded items-center mr-3 mb-2"
       >
         <div class="px-3 py-1 border-r">
@@ -68,6 +71,7 @@
 
       <div
         v-for="email in event.event.bcc"
+        :key="email.name"
         class="flex border border-purple-300 rounded items-center mr-3 mb-2"
       >
         <div class="px-3 py-1 border-r">
@@ -80,6 +84,7 @@
 
       <div
         v-for="email in event.event.reply_to"
+        :key="email.name"
         class="flex border border-purple-300 rounded items-center mr-3 mb-2"
       >
         <div class="px-3 py-1 border-r">
@@ -156,7 +161,10 @@
               title="Attachments"
             >
               <div class="flex flex-col space-y-2">
-                <div v-for="(attachment, i) in event.event.attachments">
+                <div
+                  v-for="(attachment, i) in event.event.attachments"
+                  :key="attachment.name"
+                >
                   <span>{{ i + 1 }}.</span> {{ attachment.name }}
                 </div>
               </div>
@@ -176,8 +184,6 @@ import SmtpEvent from "@/app/Event/Smtp"
 import CodeSnippet from "@/Components/UI/CodeSnippet"
 import Table from "@/Components/UI/Table"
 import TableRow from "@/Components/UI/TableRow"
-import Dump from "@/Components/UI/Dump"
-import Collapsed from "@/Components/UI/Collapsed"
 import HtmlPreview from "@/Components/UI/HtmlPreview"
 import Addresses from "./_partials/Addresses"
 import JsonChip from "@/Components/UI/JsonChip"
@@ -186,7 +192,7 @@ import Tabs from "@/Components/UI/Tabs"
 
 export default {
   components: {
-    CodeSnippet, Table, TableRow, Dump, Collapsed,
+    CodeSnippet, Table, TableRow,
     HtmlPreview, Addresses, JsonChip, Tab, Tabs
   },
   layout: 'smtp',

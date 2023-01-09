@@ -6,11 +6,11 @@ export const state = () => ({
 })
 
 export const actions = {
-  clear({commit}, type) {
+  clear(_, type) {
     this.$api.events.clear(type)
   },
 
-  delete({commit}, event) {
+  delete(_, event) {
     this.$api.events.delete(event.id)
   },
 
@@ -66,7 +66,7 @@ export const mutations = {
 
 export const getters = {
   eventByUuid: (state) => (uuid) => {
-    return state.events.find(event => event.uuid == uuid)
+    return state.events.find(event => String(event.uuid) === String(uuid))
   },
   selectedLabels: state => {
     return state.selectedLabels

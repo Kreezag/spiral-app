@@ -58,8 +58,6 @@
 
 <script>
 import {PerfectScrollbar} from 'vue2-perfect-scrollbar'
-import ImageExport from "@/Components/UI/ImageExport"
-import JsonChip from "@/Components/UI/JsonChip"
 import ProfilerEvent from "@/app/Event/Profiler"
 import FlameGraph from "./_partials/Flamegraph"
 import CallsList from "./_partials/CallsList"
@@ -75,7 +73,6 @@ export default {
     Graph,
     CallsList,
     FlameGraph, Cards,
-    JsonChip, ImageExport,
     PerfectScrollbar,
     Tab, Tabs
   },
@@ -108,7 +105,7 @@ export default {
   mounted() {
     this.calculateCallStackHeight()
     this.calculateFlamechartWidth()
-    window.addEventListener('resize', (event) => {
+    window.addEventListener('resize', () => {
       this.calculateCallStackHeight()
       this.calculateFlamechartWidth()
     });

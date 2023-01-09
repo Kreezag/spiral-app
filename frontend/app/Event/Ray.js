@@ -20,7 +20,7 @@ const labelsMap = {
 }
 
 const handlers = {
-  clear_all: ({event, store}) => {
+  clear_all: ({ store}) => {
     store.commit('clearEvents')
     return false
   },
@@ -40,12 +40,7 @@ const handlers = {
     store.commit('toggleEventState', [event.uuid, false])
     return false
   },
-  notify: ({event}) => {
-    notify({
-      title: "Hello from Ray",
-      text: event.payloads[0].content.value,
-      duration: -1
-    })
+  notify: () => {
     return false
   }
 }
@@ -96,7 +91,7 @@ export default class extends Event {
 
     this.payloads.forEach(function (payload) {
       if (payload.content.label) {
-        const label = labelsMap.hasOwnProperty(payload.content.label)
+        const label = labelsMap.hasOwn(payload.content.label)
           ? labelsMap[payload.content.label]
           : payload.content.label;
 
@@ -105,7 +100,7 @@ export default class extends Event {
         }
       }
 
-      const typeLabel = labelsMap.hasOwnProperty(payload.type)
+      const typeLabel = labelsMap.hasOwn(payload.type)
         ? labelsMap[payload.type]
         : payload.type;
 
@@ -118,7 +113,7 @@ export default class extends Event {
   }
 
   merge(event) {
-    this.event = _.merge(event, this.event)
+    this.event = { ...this.event, ...event }
     this.labels = this.collectLabels()
     this.color = this.detectColor()
   }
@@ -130,7 +125,7 @@ export class EventHandler {
   }
 
   handle() {
-    if (handlers.hasOwnProperty(this.ctx.event.type)) {
+    if (handlers.hasOwn(this.ctx.event.type)) {
       return handlers[this.ctx.event.type](this.ctx)
     }
 

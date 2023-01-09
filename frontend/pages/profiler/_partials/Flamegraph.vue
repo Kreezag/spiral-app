@@ -17,8 +17,14 @@ import FlamegraphBuilder from "@/app/Profiler/FlamegraphBuilder"
 
 export default {
   props: {
-    event: Object,
-    width: Number,
+    event: {
+      type: Object,
+      default: null
+    },
+    width: {
+      type: Number,
+      default: 0
+    },
     cellHeight: {
       type: Number,
       default: 20
@@ -64,6 +70,7 @@ export default {
       this.position.y = e.pageY;
     },
     onSpanHover(d) {
+      // eslint disable-next-line  vue/require-explicit-emits
       this.$emit('hover', {
         name: d.data.name,
         cost: d.data.cost,
@@ -72,10 +79,11 @@ export default {
     },
     detailsHandler(d) {
       if (d === null) {
+        // eslint disable-next-line  vue/require-explicit-emits
         this.$emit('hide')
       }
     },
-    colorMapper(d, originalColor) {
+    colorMapper(d) {
       if (d.data.name === 'main()') {
         return '#333333'
       }

@@ -52,7 +52,7 @@ export default {
   create({json, store}) {
     const type = json.type.toLowerCase()
 
-    if (eventTypes.hasOwnProperty(type)) {
+    if (eventTypes.hasOwn(type)) {
       return eventTypes[type]({json, store})
     }
 

@@ -3,10 +3,12 @@
     <h3 class="mb-1 text-xl font-bold">
       {{ exception.type }}
     </h3>
+    <!-- eslint-disable vue/no-v-html -->
     <pre
       class="text-muted text-sm break-all mb-5"
       v-html="exception.value"
     />
+    <!-- eslint-enable vue/no-v-html -->
     <div class="border border-purple-200 text-muted">
       <File
         v-for="(file, i) in exception.stacktrace.frames"
@@ -24,7 +26,10 @@ import File from "../_partials/File";
 export default {
     components: {File},
     props: {
-        exception: Object
+        exception: {
+          type: Object,
+          default: null
+        }
     },
 }
 </script>

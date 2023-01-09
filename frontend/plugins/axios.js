@@ -2,7 +2,7 @@ const host = window.location.host
 const httpProtocol = window.location.protocol === 'https:' ? 'https' : 'http'
 const API_URL = process.env.API_URL || `${httpProtocol}://${host}`
 
-export default function ({$axios, $logger, redirect}) {
+export default function ({$axios, $logger}) {
   const logger = $logger.withPrefix('HTTP')
   $axios.setBaseURL(API_URL)
 

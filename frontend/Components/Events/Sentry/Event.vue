@@ -11,14 +11,16 @@
 </template>
 
 <script>
-import Host from "@/Components/UI/Host"
 import Event from "../Event"
 import Exception from "./_partials/Exception"
 
 export default {
-  components: {Event, Exception, Host},
+  components: {Event, Exception},
   props: {
-    event: Object
+    event: {
+      type: Object,
+      default: null
+    }
   }
 }
 </script>

@@ -30,6 +30,7 @@
       >
         <div
           v-for="b in event.breadcrumbs"
+          :key="b"
           style="grid-template-columns: 1fr 100px 200px"
           class="grid text-xs"
         >
@@ -77,14 +78,16 @@
 </template>
 
 <script>
-import Dump from "@/Components/UI/Dump";
 import CodeSnippet from "@/Components/UI/CodeSnippet";
 import Label from "@/Components/UI/Label";
 
 export default {
-  components: {CodeSnippet, Dump, Label},
+  components: {CodeSnippet, Label},
   props: {
-    event: Object
+    event: {
+      type: Object,
+      default: null
+    }
   },
   computed: {
     hasBreadcrumbs() {

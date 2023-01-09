@@ -8,10 +8,12 @@
       <h3 class="sentry-exception__title">
         {{ event.payload.type }}
       </h3>
+      <!-- eslint-disable vue/no-v-html -->
       <pre
         class="sentry-exception__text"
         v-html="event.payload.value"
       />
+      <!-- eslint-enable vue/no-v-html -->
     </NuxtLink>
     <div
       v-if="hasFrames"
@@ -34,10 +36,13 @@ import File from "../_partials/File"
 export default {
   components: {File},
   props: {
-    event: Object,
+    event: {
+      type: Object,
+      default: null
+    },
     frames: {
       type: Number,
-      default: () => 5
+      default: 5
     }
   },
   computed: {

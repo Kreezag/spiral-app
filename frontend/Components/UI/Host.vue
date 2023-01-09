@@ -39,12 +39,13 @@
 </template>
 
 <script>
-import Label from "@/Components/UI/Label";
 export default {
-    components: {Label},
-    props: {
-        name: String
+  props: {
+    name: {
+      type: String,
+      default: ''
     }
+  }
 }
 </script>
 

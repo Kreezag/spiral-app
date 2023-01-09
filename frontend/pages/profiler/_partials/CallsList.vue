@@ -26,7 +26,10 @@ import CallsItem from "./CallsItem"
 export default {
   components: {CallsItem},
   props: {
-    event: Object,
+    event: {
+      type: Object,
+      default: null,
+    }
   },
   computed: {
     sortedEdges() {

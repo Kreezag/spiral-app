@@ -27,10 +27,12 @@
             </svg>
           </button>
         </div>
+        <!-- eslint-disable vue/no-v-html -->
         <pre
           class="text-muted text-sm"
           v-html="event.payload.value"
         />
+        <!-- eslint-enable vue/no-v-html -->
         <p class="text-muted text-sm mt-3">
           {{ date }}
         </p>

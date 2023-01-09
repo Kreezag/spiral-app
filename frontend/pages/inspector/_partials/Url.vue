@@ -20,7 +20,12 @@ import Table from "@/Components/UI/Table"
 import TableRow from "@/Components/UI/TableRow"
 
 export default {
-    components: {Table, TableRow},
-    props: ['event']
+  components: {Table, TableRow},
+  props: {
+    event: {
+      type: Object,
+      default: null
+    }
+  }
 }
 </script>

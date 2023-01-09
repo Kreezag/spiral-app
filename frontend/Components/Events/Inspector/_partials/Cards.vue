@@ -26,7 +26,12 @@
 
 <script>
 export default {
-  props: ['event']
+  props: {
+    event: {
+      type: Object,
+      default: null
+    }
+  }
 }
 </script>
 

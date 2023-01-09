@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default function (data, strFileName, strMimeType) {
   let self = window, // this script is only for browsers anyway...
     defaultMime = "application/octet-stream", // this default mime also triggers iframe downloads

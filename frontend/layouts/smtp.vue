@@ -71,7 +71,7 @@ export default {
   mounted() {
     this.$store.dispatch('events/fetch')
     this.calculateMenuHeight()
-    window.addEventListener('resize', (event) => {
+    window.addEventListener('resize', () => {
       this.calculateMenuHeight()
     });
   },

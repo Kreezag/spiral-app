@@ -2,6 +2,7 @@
   <div class="flex flex-col divide-y">
     <div
       v-for="user in addresses"
+      :key="user.name"
       class="flex items-center space-x-2"
     >
       <span
@@ -14,8 +15,11 @@
 
 <script>
 export default {
-    props: {
-        addresses: Array
+  props: {
+    addresses: {
+      type: Array,
+      default: () => []
     }
+  }
 }
 </script>

@@ -4,12 +4,14 @@
     language="php"
     :code="value == 1"
   />
+  <!-- eslint-disable vue/no-v-html -->
   <div
     v-else
     class="dump"
     :class="{'active': dumpId}"
     v-html="cleanHtml"
   />
+  <!-- eslint-enable vue/no-v-html -->
 </template>
 
 <script>
@@ -17,7 +19,7 @@ import CodeSnippet from "@/Components/UI/CodeSnippet"
 
 export default {
   components: {CodeSnippet},
-  props: ['value', 'type'],
+  props: ['value', 'type'], // eslint-disable-line vue/require-prop-types
   data() {
     return {
       evaluated: false,
@@ -30,7 +32,8 @@ export default {
     ,
     dumpId() {
       if (typeof this.value === 'string') {
-        const matches = this.value.match(/(sf\-dump\-[0-9]+)/i)
+        const matches = this.value.match(/(sf-dump-[0-9]+)/i);
+
         if (matches) {
           return matches[0]
         }

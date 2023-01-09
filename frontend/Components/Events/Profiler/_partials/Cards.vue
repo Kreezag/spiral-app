@@ -55,7 +55,10 @@ import {humanFileSize, formatDuration} from "@/Utils/converters"
 
 export default {
   props: {
-    cost: Object
+    cost: {
+      type: Object,
+      default: null
+    }
   },
   computed: {
     cpu() {

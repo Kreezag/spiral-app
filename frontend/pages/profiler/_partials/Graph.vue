@@ -16,21 +16,21 @@
       </button>
       <button
         class="text-xs uppercase text-gray-600"
-        :class="{'font-bold': metric == 'cpu'}"
+        :class="{'font-bold': metric === 'cpu'}"
         @click="metric = 'cpu'"
       >
         CPU
       </button>
       <button
         class="text-xs uppercase text-gray-600"
-        :class="{'font-bold': metric == 'pmu'}"
+        :class="{'font-bold': metric === 'pmu'}"
         @click="metric = 'pmu'"
       >
         Memory change
       </button>
       <button
         class="text-xs uppercase text-gray-600"
-        :class="{'font-bold': metric == 'mu'}"
+        :class="{'font-bold': metric === 'mu'}"
         @click="metric = 'mu'"
       >
         Memory usage
@@ -42,7 +42,6 @@
 <script>
 import {wasmFolder} from "@hpcc-js/wasm";
 import {select, selectAll} from "d3-selection"
-import {graphviz} from "d3-graphviz"
 
 import {addSlashes, DigraphBuilder} from "@/app/Profiler/DigraphBuilder"
 import FullscreenIcon from "@/Components/UI/Icons/FullscreenIcon"
@@ -52,7 +51,10 @@ wasmFolder("https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist");
 export default {
   components: {FullscreenIcon},
   props: {
-    event: Object,
+    event: {
+      type: Object,
+      default: null,
+    },
     threshold: {
       type: Number,
       default: 1
@@ -85,8 +87,8 @@ export default {
       return builder.build(this.metric, this.threshold)
     },
     findEdge(name) {
-      const found = Object.entries(this.event.edges)
-        .find(([k, v]) => addSlashes(v.callee) === name)
+      const found = Object.values(this.event.edges)
+        .find((v) => addSlashes(v.callee) === name)
 
       if (!found || found.length === 0) {
         return null
@@ -101,6 +103,7 @@ export default {
           return
         }
 
+        // eslint disable-next-line  vue/require-explicit-emits
         this.$emit('hover', {
           name: edge.callee,
           cost: edge.cost,
@@ -109,7 +112,8 @@ export default {
             y: e.pageY,
           }
         });
-      }).on("mouseout", (e) => {
+      }).on("mouseout", () => {
+        // eslint disable-next-line  vue/require-explicit-emits
         this.$emit('hide')
       })
     },

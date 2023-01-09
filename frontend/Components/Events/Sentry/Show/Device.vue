@@ -207,7 +207,10 @@ export default {
     Table, TableRow, CodeSnippet
   },
   props: {
-    event: Object
+    event: {
+      type: Object,
+      default: null
+    }
   },
   methods: {
     format_date(value) {

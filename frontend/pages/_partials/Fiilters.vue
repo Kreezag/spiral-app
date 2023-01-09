@@ -16,10 +16,7 @@
 </template>
 
 <script>
-import Label from "@/Components/UI/Label"
-
 export default {
-  components: {Label},
   computed: {
     labels() {
       return this.$store.getters['events/availableLabels']

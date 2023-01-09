@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default function (doc) {
     var refStyle = doc.createElement('style'), rxEsc = /([.*+?^${}()|\[\]\/\\])/g, idRx = /\bsf-dump-\d+-ref[012]\w+\b/,
         keyHint = 0 <= navigator.platform.toUpperCase().indexOf('MAC') ? 'Cmd' : 'Ctrl',
@@ -42,7 +43,7 @@ export default function (doc) {
             try {
                 a = s.querySelectorAll('.' + oldClass);
                 for (s = 0; s < a.length; ++s) {
-                    if (-1 == a[s].className.indexOf(newClass)) {
+                    if (-1 === a[s].className.indexOf(newClass)) {
                         a[s].className = newClass;
                         a[s].previousSibling.lastChild.innerHTML = arrow;
                     }

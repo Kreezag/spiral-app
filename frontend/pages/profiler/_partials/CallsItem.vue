@@ -29,7 +29,10 @@ import {humanFileSize, formatDuration} from "@/Utils/converters"
 
 export default {
   props: {
-    edge: Object,
+    edge: {
+      type: Object,
+      default: null,
+    }
   },
   computed: {
     p_cpu() {

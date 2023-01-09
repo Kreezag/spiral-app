@@ -8,9 +8,12 @@
 
 <script>
 export default {
-    props: {
-        href: String,
+  props: {
+    href: {
+      type: String,
+      default: ''
     },
+  },
 }
 </script>
 

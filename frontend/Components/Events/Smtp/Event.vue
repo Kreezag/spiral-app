@@ -15,11 +15,14 @@ import Event from "../Event";
 import NavItem from "@/pages/smtp/_partials/NavItem"
 
 export default {
-    components: {
-        Event, NavItem
-    },
-    props: {
-        event: Object
+  components: {
+    Event, NavItem
+  },
+  props: {
+    event: {
+      type: Object,
+      default: null
     }
+  }
 }
 </script>

@@ -18,7 +18,10 @@ import Event from "../Event"
 export default {
   components: {Event, Dump},
   props: {
-    event: Object,
+    event: {
+      type: Object,
+      default: null
+    }
   }
 }
 </script>

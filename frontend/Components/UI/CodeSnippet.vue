@@ -1,9 +1,11 @@
 <template>
   <div class="code-snippet">
+    <!-- eslint-disable vue/no-v-html -->
     <pre
       :language="language"
       v-html="highlightCode"
     />
+    <!-- eslint-enable vue/no-v-html -->
     <button
       type="button"
       class="code-snippet__btn-copy"
@@ -26,6 +28,8 @@ export default {
   components: {CopyIcon},
   props: {
     code: {
+      type: String,
+      default: '',
       required: true
     },
     language: {
@@ -55,8 +59,7 @@ export default {
       this.copied = true
       setTimeout(() => this.copied = false, 100)
 
-      copyText(this.strignifiedCode, undefined, (error, event) => {
-
+      copyText(this.strignifiedCode, undefined, () => {
       })
     }
   }

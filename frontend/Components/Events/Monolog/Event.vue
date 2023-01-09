@@ -8,33 +8,36 @@
         class="event-monolog__snippet break-words"
         :code="event.text"
       />
-      <CodeSnippet
-        v-if="hasPayloads"
-        language="json"
-        class="event-monolog__payloads"
-        :code="event.payloads"
-      />
-      <CodeSnippet
-        v-for="field in fields"
-        v-if="hasFields"
-        :key="field.title"
-        :title="field.title"
-        :code="field.value"
-      />
+      <template v-if="hasPayloads">
+        <CodeSnippet
+          language="json"
+          class="event-monolog__payloads"
+          :code="event.payloads"
+        />
+      </template>
+      <template v-if="hasFields">
+        <CodeSnippet
+          v-for="field in fields"
+          :key="field.title"
+          :title="field.title"
+          :code="field.value"
+        />
+      </template>
     </div>
   </Event>
 </template>
 
 <script>
 import CodeSnippet from "@/Components/UI/CodeSnippet"
-import Table from "@/Components/UI/Table"
-import TableRow from "@/Components/UI/TableRow"
 import Event from "../Event"
 
 export default {
-  components: {Event, TableRow, Table, CodeSnippet},
+  components: {Event, CodeSnippet},
   props: {
-    event: Object,
+    event: {
+      type: Object,
+      default: null,
+    }
   },
   computed: {
     fields() {

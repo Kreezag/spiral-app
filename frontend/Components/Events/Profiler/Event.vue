@@ -13,14 +13,16 @@
 </template>
 
 <script>
-import Host from "@/Components/UI/Host"
 import Cards from "./_partials/Cards"
 import Event from "../Event"
 
 export default {
-  components: {Event, Host, Cards},
+  components: {Event, Cards},
   props: {
-    event: Object,
+    event: {
+      type: Object,
+      default: null
+    }
   }
 }
 </script>

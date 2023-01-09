@@ -6,10 +6,12 @@
 
     <div
       v-if="segmentTypes.length > 0"
+      :key="segmentTypes[0]?.type"
       class="flex space-x-7 mb-4"
     >
       <div
         v-for="type in segmentTypes"
+        :key="type"
         class="flex items-center"
       >
         <div
@@ -40,6 +42,7 @@
       >
         <div
           v-for="row in series"
+          :key="row.segment.label"
           class="my-2"
         >
           <div
@@ -82,7 +85,10 @@ import HeartBeat from "@/Components/UI/Icons/HeartBeat"
 export default {
   components: {HeartBeat},
   props: {
-    event: Object
+    event: {
+      type: Object,
+      default: null,
+    }
   },
   data() {
     return {}

@@ -4,6 +4,7 @@
       v-if="title !== null"
       class="event-table__cell-name"
     >
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <span v-html="title" />
     </div>
     <div class="event-table__cell-value">
@@ -14,8 +15,11 @@
 
 <script>
 export default {
-    props: {
-        title: String
+  props: {
+    title: {
+      type: String,
+      default: ''
     }
+  }
 }
 </script>

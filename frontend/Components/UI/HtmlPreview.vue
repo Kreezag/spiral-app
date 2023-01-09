@@ -3,8 +3,8 @@
     <div class="html-preview__wrap">
       <button
         class="html-preview__btn"
-        :class="{'active': device == 'mobile'}"
-        @click="device = 'mobile'"
+        :class="{'active': selectedDevice === 'mobile'}"
+        @click="useDevice('mobile')"
       >
         <svg
           class="html-preview__btn-icon"
@@ -17,8 +17,8 @@
       </button>
       <button
         class="html-preview__btn"
-        :class="{'active': device == 'tablet'}"
-        @click="device = 'tablet'"
+        :class="{'active': selectedDevice === 'tablet'}"
+        @click="useDevice('tablet')"
       >
         <svg
           class="html-preview__btn-icon"
@@ -36,8 +36,8 @@
       </button>
       <button
         class="html-preview__btn"
-        :class="{'active': device == 'desktop'}"
-        @click="device = 'desktop'"
+        :class="{'active': selectedDevice === 'desktop'}"
+        @click="useDevice('desktop')"
       >
         <svg
           class="html-preview__btn-icon h-7"
@@ -49,7 +49,7 @@
         </svg>
       </button>
     </div>
-    <div :class="`device-${device}`">
+    <div :class="`device-${selectedDevice}`">
       <div>
         <slot />
       </div>
@@ -59,13 +59,21 @@
 
 <script>
 export default {
-    props: {
-        device: {
-            default() {
-                return 'desktop'
-            }
-        }
+  props: {
+    device: {
+      type: String,
+      default: 'desktop'
     }
-
+  },
+  data () {
+    return {
+      selectedDevice: this.device
+    }
+  },
+  methods: {
+    useDevice(value) {
+      this.selectedDevice = value
+    },
+  },
 }
 </script>

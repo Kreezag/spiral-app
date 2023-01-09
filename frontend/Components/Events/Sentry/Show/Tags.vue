@@ -117,7 +117,10 @@ import CodeSnippet from "@/Components/UI/CodeSnippet"
 export default {
   components: {CodeSnippet},
   props: {
-    event: Object
+    event: {
+      type: Object,
+      default: null
+    }
   }
 }
 </script>

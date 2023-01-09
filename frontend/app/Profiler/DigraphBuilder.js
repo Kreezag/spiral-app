@@ -1,28 +1,9 @@
-import {humaCpuUsage, humanFileSize, formatDuration} from "@/Utils/converters"
+import {humanFileSize, formatDuration} from "@/Utils/converters"
 
 const labelsStrigifier = function (labels) {
   return Object.entries(labels).map(([label, value]) => {
     return `${label}="${value}"`
   }).join(' ')
-}
-
-const metricName = function (metric) {
-  switch (metric) {
-    case 'cpu':
-    case 'p_cpu':
-    case 'd_cpu':
-      return 'CPU'
-    case 'wt':
-      return 'Wall time'
-    case 'mu':
-    case 'p_mu':
-    case 'd_mu':
-      return 'Memory'
-    case 'p_pmu':
-    case 'pmu':
-    case 'd_pmu':
-      return 'Memory change'
-  }
 }
 
 const formatValue = function (value, metric) {
@@ -85,6 +66,7 @@ digraph xhprof {
     switch (metric) {
       case 'pmu':
         metricProps = {field: 'p_pmu', label: 'p_pmu'}
+        break;
       case 'mu':
         metricProps = {field: 'p_mu', label: 'p_mu'}
     }
@@ -112,11 +94,9 @@ digraph xhprof {
       },
     }
 
-    const edges = Object.entries(this.edges)
-
-    for (const [key, edge] of edges) {
+    Object.values(this.edges).forEach((edge) => {
       if (!edge.caller || edge.caller.length === 0) {
-        continue
+        return
       }
 
       if (edge.cost.p_pmu > 10) {
@@ -124,18 +104,16 @@ digraph xhprof {
       } else if (edge.cost[metricProps.field] >= threshold) {
         types.default.nodes.push([edge, metricProps])
       }
-    }
+    })
 
-    const nodes = Object.entries(types)
-
-    for (const [key, config] of nodes) {
+    Object.values(types).forEach((config) => {
       digram += `    node [ ${labelsStrigifier(config.node)} ]\n`
       digram += `    edge [ ${labelsStrigifier(config.edge)} ]\n`
 
       for (let [node, metric] of config.nodes) {
         digram += generateNode(node, metric)
       }
-    }
+    })
 
     return `${digram} }`
   }
